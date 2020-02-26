@@ -1,6 +1,6 @@
 # sword_to_offer
-The main content for the 《Sword to offer》 second edition of each exercise C++ implementation.
+Mainly based on OJ on LeetCode, the C ++ language implementation of all examples of the second edition of <<Sword to offer>> (to be updated)
 
-The explanation of the problem set is on my CSDN blog. Link:[《剑指-Offer》](https://blog.csdn.net/yl_puyu/category_9720322.html)
+All examples have been explained in detail on my CSDN blog, and they will also contain related examples and interesting ideas. This is my link:[《剑指-Offer》](https://blog.csdn.net/yl_puyu/category_9720322.html)
 
 Link:
