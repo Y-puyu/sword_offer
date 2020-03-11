@@ -1,45 +1,25 @@
-// 方法一：暴搜
-// 执行用时 :28 ms, 在所有 C++ 提交中击败了96.72%的用户
-// 内存消耗 :12.2 MB, 在所有 C++ 提交中击败了100.00%的用户
+// 方法一：模拟+辅助栈，常规解法
+// 执行用时 :4 ms, 在所有 C++ 提交中击败了98.55%的用户
+// 内存消耗 :17.6 MB, 在所有 C++ 提交中击败了100.00%的用户
+
 class Solution {
 public:
-    bool findNumberIn2DArray(vector<vector<int>>& matrix, int target) {
-        if (matrix.empty() || matrix[0].empty()) 
-            return false;
-        for (int i = 0; i < matrix.size(); ++i) {
-            for (int j = 0; j < matrix[0].size(); ++j) {
-                if (matrix[i][j] == target)
-                    return true;
+    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+        if (pushed.size() != popped.size()) return false;
+        if (pushed.size() == 0 && popped.size() == 0) return true;
+        stack<int> s1, s2;
+        for (int i = popped.size() - 1; i >= 0; --i) 
+            s2.push(popped[i]);
+        for (int i = 0; i < pushed.size(); ++i) {
+            s1.push(pushed[i]);
+            while (s2.top() == s1.top()) { 
+                s1.pop();
+                s2.pop();
+                if (s1.empty()) break;
             }
         }
-        return false;
+        return s1.empty();
     }
 };
 
 
-
-// 数学规律法
-// 执行用时 :52 ms, 在所有 C++ 提交中击败了18.44%的用户
-// 内存消耗 :12.2 MB, 在所有 C++ 提交中击败了100.00%的用户
-
-class Solution {
-public:
-    bool findNumberIn2DArray(vector<vector<int>>& matrix, int target) {
-        if (matrix.empty() || matrix[0].empty()) 
-            return false;
-        if (target < matrix[0][0] || target > matrix.back().back()) 
-            return false;
-        int x = matrix.size() - 1, y = 0;
-        while (true) {
-            if (matrix[x][y] > target) 
-                --x;
-            else if (matrix[x][y] < target) 
-                ++y;
-            else 
-                return true;
-            if (x < 0 || y >= matrix[0].size()) 
-                break;
-        }
-        return false;
-    }
-};	
